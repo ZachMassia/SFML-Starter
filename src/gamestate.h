@@ -1,7 +1,6 @@
 #pragma once
 
 #include <memory>
-#include <stack>
 #include <string>
 
 #include <SFML/System/Time.hpp>
@@ -13,15 +12,9 @@ class GameState
 {
 public:
     GameState(const std::string& id, GameEngine& _engine, bool replace = true)
-        : stateID(id), engine(_engine), replacing(replace)
-    {
+        : stateID(id), engine(_engine), replacing(replace) {}
 
-    }
-
-    virtual ~GameState()
-    {
-
-    }
+    virtual ~GameState() {}
 
     virtual void pause()  = 0;
     virtual void resume() = 0;
@@ -39,9 +32,8 @@ public:
         return replacing;
     }
 
-    // Each state will use it's own callback system to avoid previously
-    // connected actions interfering. There is only one action mapping in the
-    // engine class.
+    // Each state will use it's own callback system to avoid previously connected actions from
+    // interfering with the current state.
     thor::ActionMap<std::string>::CallbackSystem actionSystem;
 
     const std::string stateID;
