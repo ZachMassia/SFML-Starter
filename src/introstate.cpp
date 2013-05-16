@@ -32,7 +32,7 @@ void IntroState::resume()
 
 }
 
-void IntroState::update()
+void IntroState::update(const sf::Time &dt)
 {
 
 }

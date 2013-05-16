@@ -14,7 +14,7 @@ public:
     void pause();
     void resume();
 
-    void update();
+    void update(const sf::Time &dt);
     void draw();
 
 private:

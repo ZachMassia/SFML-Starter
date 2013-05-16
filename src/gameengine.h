@@ -5,6 +5,7 @@
 #include <memory>
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 #include <Thor/Input.hpp>
 
 class GameState;
@@ -33,9 +34,14 @@ public:
 
     sf::RenderWindow screen;
 
+    // Event callback objects
     thor::ActionMap<std::string> actionMap;
     thor::ActionMap<std::string>::CallbackSystem actionSystem; // global callbacks
     typedef thor::ActionContext<std::string> actionContext;
+
+    // Time related objects
+    sf::Clock clock;
+    sf::Time previousTime, currentTime, deltaTime;
 
 private:
     std::stack<std::unique_ptr<GameState>> states;

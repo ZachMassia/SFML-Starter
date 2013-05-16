@@ -29,6 +29,8 @@ GameEngine::GameEngine(const std::string& title, unsigned int width,
     // Common keys mapped for convenience
     actionMap["escape_key"] = thor::Action(sf::Keyboard::Escape, thor::Action::PressOnce);
     actionMap["space_key"]  = thor::Action(sf::Keyboard::Space);
+
+    currentTime = clock.getElapsedTime();
 }
 
 void GameEngine::run(std::unique_ptr<GameState> state)
@@ -83,10 +85,18 @@ void GameEngine::update()
     if (!screen.isOpen()) {
         running = false;
     }
+
+    // Update delta time
+    previousTime = currentTime;
+    currentTime  = clock.getElapsedTime();
+    deltaTime    = currentTime - previousTime;
+
+    // Handle event callbacks
     actionMap.update(screen);
     actionMap.invokeCallbacks(actionSystem, &screen);
     actionMap.invokeCallbacks(states.top()->actionSystem, &screen);
-    states.top()->update();
+
+    states.top()->update(deltaTime);
 }
 
 void GameEngine::draw()

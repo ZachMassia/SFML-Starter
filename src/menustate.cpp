@@ -26,7 +26,7 @@ void MenuState::resume()
 
 }
 
-void MenuState::update()
+void MenuState::update(const sf::Time &dt)
 {
 
 }

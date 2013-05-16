@@ -32,7 +32,7 @@ void PlayState::resume()
     std::cout << "Resume playstate" << std::endl;
 }
 
-void PlayState::update()
+void PlayState::update(const sf::Time &dt)
 {
 
 }
