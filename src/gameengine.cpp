@@ -22,7 +22,7 @@ GameEngine::GameEngine(const std::string& title, unsigned int width,
 
     // Register quit action
     actionMap["quit"] = thor::Action(sf::Event::Closed);
-    actionSystem.connect("quit", [&] (thor::ActionContext<std::string> c) {
+    actionSystem.connect("quit", [&] (actionContext c) {
         quit();
     });
 
