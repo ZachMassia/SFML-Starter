@@ -17,6 +17,7 @@ set(LIBS ${LIBS}
 set(SRC_FILES
     gameengine.h
     gameengine.cpp
+    assetmanager.h
     gamestate.h
     introstate.h
     introstate.cpp
@@ -24,6 +25,8 @@ set(SRC_FILES
     playstate.cpp
     menustate.h
     menustate.cpp
+    loadstate.h
+    loadstate.cpp
 )
 
 add_library(src ${SRC_FILES})
