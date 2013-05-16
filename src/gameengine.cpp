@@ -4,8 +4,8 @@
 #include "menustate.h"
 #include "playstate.h"
 
-GameEngine::GameEngine(const std::string& title, unsigned int width,
-                       unsigned int height, unsigned int bpp, bool _fullscreen)
+GameEngine::GameEngine(const std::string& title, unsigned int width, unsigned int height,
+                       unsigned int bpp, bool _fullscreen)
     : resume(false), running(false), fullscreen(_fullscreen)
 {
     int flags = 0;
@@ -22,7 +22,7 @@ GameEngine::GameEngine(const std::string& title, unsigned int width,
 
     // Register quit action
     actionMap["quit"] = thor::Action(sf::Event::Closed);
-    actionSystem.connect("quit", [&] (actionContext c) {
+    actionSystem.connect("quit", [&] (GameEngine::actionContext c) {
         quit();
     });
 
@@ -91,9 +91,11 @@ void GameEngine::update()
     currentTime  = clock.getElapsedTime();
     deltaTime    = currentTime - previousTime;
 
-    // Handle event callbacks
+    // Update active actions
     actionMap.update(screen);
+    // Call global callbacks
     actionMap.invokeCallbacks(actionSystem, &screen);
+    // Call game state callbacks
     actionMap.invokeCallbacks(states.top()->actionSystem, &screen);
 
     states.top()->update(deltaTime);

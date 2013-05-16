@@ -2,7 +2,7 @@
 #include <exception>
 
 #include "gameengine.h"
-#include "introstate.h"
+#include "loadstate.h"
 
 int main(int argc, char* argv[])
 {
@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
         std::cout << "Initializing engine" << std::endl;
 
         GameEngine engine("Window Title");
-        engine.run(engine.build<IntroState>(true));
+        engine.run(engine.build<LoadState>(true));
 
         while (engine.isRunning()) {
             engine.nextState();
