@@ -6,8 +6,7 @@ A starting point for SFML projects.
 Loosly based on eXpl0it3r's [Small Game Engine][sge-git].
 
 
-Dependencies
-------------
+###Dependencies
 Built against the latest versions of [SFML][sfml-git] and [Thor][thor-git].
 
 Requires [CMake][cmake-home] to build (or import it into your IDE of choice).
