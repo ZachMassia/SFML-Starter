@@ -27,8 +27,16 @@ GameEngine::GameEngine(const std::string& title, unsigned int width, unsigned in
     });
 
     // Common keys mapped for convenience
-    actionMap["escape_key"] = thor::Action(sf::Keyboard::Escape, thor::Action::PressOnce);
-    actionMap["space_key"]  = thor::Action(sf::Keyboard::Space);
+    actionMap["escape_key"]     = thor::Action(sf::Keyboard::Escape, thor::Action::PressOnce);
+    actionMap["space_key"]      = thor::Action(sf::Keyboard::Space);
+    actionMap["up_key"]         = thor::Action(sf::Keyboard::Up);
+    actionMap["down_key"]       = thor::Action(sf::Keyboard::Down);
+    actionMap["left_key"]       = thor::Action(sf::Keyboard::Left);
+    actionMap["right_key"]      = thor::Action(sf::Keyboard::Right);
+    actionMap["up_key_once"]    = thor::Action(sf::Keyboard::Up,    thor::Action::PressOnce);
+    actionMap["down_key_once"]  = thor::Action(sf::Keyboard::Down,  thor::Action::PressOnce);
+    actionMap["left_key_once"]  = thor::Action(sf::Keyboard::Left,  thor::Action::PressOnce);
+    actionMap["right_key_once"] = thor::Action(sf::Keyboard::Right, thor::Action::PressOnce);
 
     currentTime = clock.getElapsedTime();
 }
