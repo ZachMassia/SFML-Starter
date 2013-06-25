@@ -9,8 +9,10 @@
 LoadState::LoadState(GameEngine &engine, bool replace)
     : GameState("load", engine, replace)
 {
-    // Register resource keys with respective maps
+    using thor::Resources::fromFile;
 
+    // Register resource keys with respective maps
+    engine.fontKeys.add("Ubuntu-R", fromFile<sf::Font>("../assets/fonts/Ubuntu-R.ttf"));
 
     // Keys registered after this method call will not be cached
     cacheAllAssets();

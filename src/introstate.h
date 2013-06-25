@@ -3,6 +3,7 @@
 #include "gamestate.h"
 
 #include <SFML/Graphics.hpp>
+#include <memory>
 
 class GameEngine;
 
@@ -18,5 +19,8 @@ public:
     void draw();
 
 private:
+    void initTitleText();
 
+    std::shared_ptr<sf::Font> font;
+    sf::Text text;
 };
