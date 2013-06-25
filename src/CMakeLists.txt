@@ -27,6 +27,8 @@ set(SRC_FILES
     menustate.cpp
     loadstate.h
     loadstate.cpp
+    snake.h
+    snake.cpp
 )
 
 add_library(src ${SRC_FILES})

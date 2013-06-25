@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
     try {
         std::cout << "Initializing engine" << std::endl;
 
-        GameEngine engine("Window Title");
+        GameEngine engine("Window Title", 650, 650);
         engine.run(engine.build<LoadState>(true));
 
         while (engine.isRunning()) {

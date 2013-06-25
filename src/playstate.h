@@ -3,6 +3,9 @@
 #include "gamestate.h"
 
 #include <SFML/Graphics.hpp>
+#include <memory>
+
+#include "snake.h"
 
 class GameEngine;
 
@@ -18,5 +21,5 @@ public:
     void draw();
 
 private:
-
+    Snake snake;
 };
