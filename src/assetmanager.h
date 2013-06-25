@@ -2,7 +2,7 @@
 
 #include <map>
 #include <utility>
-
+#include <exception>
 
 template<typename K, typename V>
 class AssetManager
@@ -29,8 +29,7 @@ public:
     {
         auto result = map.find(key);
         if (result == map.end()) {
-            V null_ptr = nullptr;
-            return null_ptr;
+            throw std::runtime_error("Bad key");
         }
         return result->second;
     }
