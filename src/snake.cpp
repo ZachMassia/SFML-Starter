@@ -53,11 +53,11 @@ bool Snake::isDead()
 {
     // Did the head hit it's body
     bool headIsSafe = true;
-    sf::FloatRect headRect = body.front().getLocalBounds();
+    sf::FloatRect headRect = body.front().getGlobalBounds();
 
     std::deque<sf::RectangleShape>::size_type i = 1;
     for ( ; i < body.size(); ++i) {
-        if (headRect.intersects(body.at(i).getLocalBounds())) {
+        if (headRect.intersects(body.at(i).getGlobalBounds())) {
             headIsSafe = false;
         }
     }

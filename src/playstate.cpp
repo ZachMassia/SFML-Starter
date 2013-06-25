@@ -59,7 +59,7 @@ void PlayState::update(const sf::Time &dt)
     snake.update(dt);
 
     if (snake.isDead()) {
-        //_next = engine.build<IntroState>(true);
+        _next = engine.build<IntroState>(true);
     }
 }
 
