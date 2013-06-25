@@ -4,9 +4,13 @@
 #include "menustate.h"
 #include "playstate.h"
 
-GameEngine::GameEngine(const std::string& title, unsigned int width, unsigned int height,
-                       unsigned int bpp, bool _fullscreen)
-    : resume(false), running(false), fullscreen(_fullscreen)
+GameEngine::GameEngine(const std::string& title,
+                       unsigned int width, unsigned int height,
+                       unsigned int bpp,
+                       bool _fullscreen)
+    : resume(false),
+      running(false),
+      fullscreen(_fullscreen)
 {
     int flags = 0;
 
