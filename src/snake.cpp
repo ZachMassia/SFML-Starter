@@ -6,8 +6,7 @@ Snake::Snake(const sf::Vector2u& _screenSize, float size) :
     screenSize(_screenSize),
     cellSize(size, size)
 {
-    body.push_front(getNewBodyPiece(sf::Vector2f(screenSize.x / 2,
-                                                 screenSize.y / 2)));
+    body.push_front(getNewBodyPiece());
     direction = Snake::DOWN;
     lastMove = clock.getElapsedTime();
 }
@@ -76,7 +75,7 @@ void Snake::advanceSnake()
     sf::Vector2f newHeadPos,
                  oldHeadPos = body.front().getPosition();
 
-    float gap = 5.0f; // gap between each cell in pixels.
+    float gap = 2.5f; // gap between each cell in pixels.
 
     switch (direction)
     {

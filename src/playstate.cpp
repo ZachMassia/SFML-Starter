@@ -9,8 +9,10 @@
 
 PlayState::PlayState(GameEngine& engine, bool replace) :
     GameState("play", engine, replace),
-    snake(engine.screen.getSize(), engine.screen.getSize().x / 17.5)
+    snake(engine.screen.getSize(), engine.screen.getSize().x / 20)
 {
+    snake.snakeDiesOnEdgeCollision = false;
+
     // Escape key should quit
     actionSystem.connect("escape_key", [&] (GameEngine::actionContext c) {
         engine.quit();
