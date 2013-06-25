@@ -18,9 +18,9 @@ public:
 
     void grow();
     bool isDead();
+    sf::Vector2f getHeadPosition();
 
     enum directions { UP, DOWN, LEFT, RIGHT } direction;
-
     bool snakeDiesOnEdgeCollision;
 
 private:
@@ -32,7 +32,6 @@ private:
 
 
     /* -- Variables -- */
-
     std::deque<sf::RectangleShape> body;
 
     bool newCellNeeded;

@@ -15,7 +15,7 @@ void Snake::update(const sf::Time& dt)
 {
     // Slow down the movement
     sf::Time now = clock.getElapsedTime();
-    if (now - lastMove < sf::seconds(0.1)) {
+    if (now - lastMove < sf::seconds(0.25)) {
         return;
     } else {
         lastMove = now;
@@ -47,7 +47,6 @@ void Snake::grow()
     newCellNeeded = true;
 }
 
-
 bool Snake::isDead()
 {
     // Did the head hit it's body
@@ -60,14 +59,22 @@ bool Snake::isDead()
             headIsSafe = false;
         }
     }
-
     // TODO: Proper edge detection for right and bottom edge.
     if (snakeDiesOnEdgeCollision) {
-        sf::Vector2f head = body.front().getPosition();
-        return !(headIsSafe && head.x > 0 && head.y > 0);
+        bool headInsidePlayingArea = headRect.left >= 0
+                && (headRect.left + headRect.width)  <= screenSize.x
+                &&  headRect.top  >= 0
+                && (headRect.top  + headRect.height) <= screenSize.y;
+
+        return !(headIsSafe && headInsidePlayingArea);
     } else {
         return !headIsSafe;
     }
+}
+
+sf::Vector2f Snake::getHeadPosition()
+{
+    return body.front().getPosition();
 }
 
 void Snake::advanceSnake()
@@ -75,7 +82,7 @@ void Snake::advanceSnake()
     sf::Vector2f newHeadPos,
                  oldHeadPos = body.front().getPosition();
 
-    float gap = 2.5f; // gap between each cell in pixels.
+    float gap = 0.0f; // gap between each cell in pixels.
 
     switch (direction)
     {

@@ -11,7 +11,7 @@ PlayState::PlayState(GameEngine& engine, bool replace) :
     GameState("play", engine, replace),
     snake(engine.screen.getSize(), engine.screen.getSize().x / 20)
 {
-    snake.snakeDiesOnEdgeCollision = false;
+    //snake.snakeDiesOnEdgeCollision = false;
 
     // Escape key should quit
     actionSystem.connect("escape_key", [&] (GameEngine::actionContext c) {
@@ -49,6 +49,7 @@ PlayState::PlayState(GameEngine& engine, bool replace) :
 
 void PlayState::pause()
 {
+
 }
 
 void PlayState::resume()
@@ -61,6 +62,8 @@ void PlayState::update(const sf::Time &dt)
     snake.update(dt);
 
     if (snake.isDead()) {
+        std::cout << "SNAKE DEAD @ X: " << snake.getHeadPosition().x << " Y: "
+                  << snake.getHeadPosition().y << std::endl;
         _next = engine.build<IntroState>(true);
     }
 }
