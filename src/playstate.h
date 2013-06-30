@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
+#include <string>
 #include <memory>
 #include <array>
 
@@ -27,6 +28,10 @@ private:
     void initApples();
     void spawnApple();
 
+    std::string getScore();
+    void initScoreText();
+    void updateScoreText();
+
     float cellSize;
 
     struct Apple {
@@ -41,4 +46,7 @@ private:
 
     sf::Clock clock;
     sf::Time lastAppleSpawn;
+
+    std::shared_ptr<sf::Font> scoreFont;
+    sf::Text scoreText;
 };

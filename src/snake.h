@@ -18,6 +18,7 @@ public:
 
     void grow();
     bool isDead();
+    unsigned int length() { return body.size(); }
 
     bool rectIntersectsSnake(const sf::FloatRect &rect);
 

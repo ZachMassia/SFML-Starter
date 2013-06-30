@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <iostream>
+#include <sstream>
 
 #include <cstdlib>
 #include <ctime>
@@ -55,6 +56,7 @@ PlayState::PlayState(GameEngine& engine, bool replace) :
     });
 
     initApples();
+    initScoreText();
 }
 
 void PlayState::pause()
@@ -73,8 +75,11 @@ void PlayState::update(const sf::Time &dt)
     if (snake.isDead()) {
         std::cout << "SNAKE DEAD @ X: " << snake.getHeadPosition().x << " Y: "
                   << snake.getHeadPosition().y << std::endl;
+        std::cout << getScore() << std::endl;
         _next = engine.build<IntroState>(true);
     }
+
+    updateScoreText();
 
     // Check collisions
     sf::FloatRect snakeRect = snake.getHeadRect();
@@ -89,6 +94,7 @@ void PlayState::update(const sf::Time &dt)
     if (clock.getElapsedTime() - lastAppleSpawn > sf::seconds(2.5f)) {
         spawnApple();
     }
+
 }
 
 void PlayState::draw()
@@ -101,6 +107,7 @@ void PlayState::draw()
             engine.screen.draw(apple.sprite);
         }
     }
+    engine.screen.draw(scoreText);
 
     engine.screen.display();
 }
@@ -129,7 +136,6 @@ void PlayState::spawnApple()
 
     // Make sure we're not dealing with a nullptr
     if (nullptr == apple) {
-        //throw std::runtime_error("Apple was nullptr");
         return;
     }
 
@@ -151,4 +157,29 @@ void PlayState::spawnApple()
     } while (snake.rectIntersectsSnake(apple->sprite.getGlobalBounds()));
 
     lastAppleSpawn = clock.getElapsedTime();
+}
+
+std::string PlayState::getScore()
+{
+    std::stringstream score;
+    score << "SCORE: " << snake.length() * 10;
+    return score.str();
+}
+
+void PlayState::initScoreText()
+{
+    scoreFont = engine.assets.acquire(engine.fontKeys.get("Ubuntu-R"));
+    scoreText.setFont(*scoreFont.get());
+
+    scoreText.setString(getScore());
+    scoreText.setCharacterSize(engine.screen.getSize().y * 0.04);
+    scoreText.setStyle(sf::Text::Bold);
+
+    scoreText.setPosition(engine.screen.getSize().x * 0.05f,
+                          engine.screen.getSize().y * 0.05f);
+}
+
+void PlayState::updateScoreText()
+{
+    scoreText.setString(getScore());
 }
