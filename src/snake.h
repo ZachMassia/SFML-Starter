@@ -18,7 +18,11 @@ public:
 
     void grow();
     bool isDead();
+
+    bool rectIntersectsSnake(const sf::FloatRect &rect);
+
     sf::Vector2f getHeadPosition();
+    sf::FloatRect getHeadRect();
 
     enum directions { UP, DOWN, LEFT, RIGHT } direction;
     bool snakeDiesOnEdgeCollision;

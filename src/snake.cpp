@@ -15,7 +15,7 @@ void Snake::update(const sf::Time& dt)
 {
     // Slow down the movement
     sf::Time now = clock.getElapsedTime();
-    if (now - lastMove < sf::seconds(0.25)) {
+    if (now - lastMove < sf::seconds(0.15)) {
         return;
     } else {
         lastMove = now;
@@ -72,9 +72,24 @@ bool Snake::isDead()
     }
 }
 
+bool Snake::rectIntersectsSnake(const sf::FloatRect &rect)
+{
+    for (auto& cell: body) {
+        if (rect.intersects(cell.getGlobalBounds())) {
+            return true;
+        }
+    }
+    return false;
+}
+
 sf::Vector2f Snake::getHeadPosition()
 {
     return body.front().getPosition();
+}
+
+sf::FloatRect Snake::getHeadRect()
+{
+    return body.front().getGlobalBounds();
 }
 
 void Snake::advanceSnake()

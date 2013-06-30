@@ -3,7 +3,10 @@
 #include "gamestate.h"
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+
 #include <memory>
+#include <array>
 
 #include "snake.h"
 
@@ -21,5 +24,21 @@ public:
     void draw();
 
 private:
+    void initApples();
+    void spawnApple();
+
+    float cellSize;
+
+    struct Apple {
+        Apple() : alive(false) {}
+        bool alive;
+        sf::RectangleShape sprite;
+    };
+
+    std::array<Apple, 6> apples;
+
     Snake snake;
+
+    sf::Clock clock;
+    sf::Time lastAppleSpawn;
 };
