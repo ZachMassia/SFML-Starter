@@ -128,3 +128,18 @@ void GameEngine::quit()
     screen.close();
     running = false;
 }
+
+std::shared_ptr<sf::Texture> GameEngine::getTexture(const std::string& key)
+{
+    return assets.acquire(textureKeys.get(key));
+}
+
+std::shared_ptr<sf::Font> GameEngine::getFont(const std::string& key)
+{
+    return assets.acquire(fontKeys.get(key));
+}
+
+std::shared_ptr<sf::SoundBuffer> GameEngine::getSoundBuffer(const std::string& key)
+{
+    return assets.acquire(soundBufferKeys.get(key));
+}
