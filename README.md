@@ -5,6 +5,7 @@ A starting point for SFML projects.
 
 Loosly based on eXpl0it3r's [Small Game Engine][sge-git].
 
+An example game can be viewed in the [snake][snake-branch] branch.
 
 ###Dependencies
 Built against the latest versions of [SFML][sfml-git] and [Thor][thor-git].
@@ -35,3 +36,4 @@ make && ./sfml_starter
 [sfml-git]: http://github.com/LaurentGomila/SFML
 [thor-git]: http://github.com/Bromeon/Thor
 [sge-git]: https://github.com/eXpl0it3r/SmallGameEngine
+[snake-branch]: https://github.com/ZachMassia/SFML-Starter/tree/snake
