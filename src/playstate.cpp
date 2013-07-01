@@ -17,7 +17,7 @@ PlayState::PlayState(GameEngine& engine, bool replace) :
     // M key should enter menu
     engine.actionMap["m_key"] = thor::Action(sf::Keyboard::M);
     actionSystem.connect("m_key", [&] (GameEngine::actionContext c) {
-            _next = engine.build<MenuState>(false);
+        _next = engine.build<MenuState>(false);
     });
 
     std::cout << "Playstate built" << std::endl;

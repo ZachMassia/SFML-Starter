@@ -9,6 +9,7 @@
 LoadState::LoadState(GameEngine &engine, bool replace)
     : GameState("load", engine, replace)
 {
+    using thor::Resources::fromFile;
     // Register resource keys with respective maps
 
 

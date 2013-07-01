@@ -36,6 +36,13 @@ public:
     template <typename T>
     std::unique_ptr<T> build(bool replace = true);
 
+    // Helper methods for getting assets. Eliminates the need for long calls such as:
+    // `engine.assets.aquire(engine.fontKeys.get("Key"))`
+    std::shared_ptr<sf::Texture>     getTexture(const std::string& key);
+    std::shared_ptr<sf::Font>        getFont(const std::string& key);
+    std::shared_ptr<sf::SoundBuffer> getSoundBuffer(const std::string& key);
+
+    // The main rendering target.
     sf::RenderWindow screen;
 
     // Global action map. This map is used for all states.
