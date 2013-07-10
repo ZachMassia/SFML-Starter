@@ -3,6 +3,8 @@
 #include <map>
 #include <utility>
 #include <exception>
+#include <string>
+#include <type_traits>
 
 
 template<typename K, typename V>
@@ -30,7 +32,12 @@ public:
     {
         auto result = map.find(key);
         if (result == map.end()) {
-            throw std::runtime_error("Bad key");
+            // If the key is a std::string or char*, include it in the error message.
+            std::string error_msg("Bad key");
+            if (std::is_same<K, std::string>::value || std::is_same<K, char*>::value) {
+                error_msg += (": " + key);
+            }
+            throw std::runtime_error(error_msg);
         }
         return result->second;
     }
